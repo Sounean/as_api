@@ -1,0 +1,10 @@
+server:
+  port: 5088
+  compression:
+    enabled: true
+spring:
+  # 配置数据源
+  datasource:
+    url: jdbc:mysql://localhost:3306/mytest?characterEncoding=utf8&useSSL=true
+    username: root #数据库用户名
+    password: 123456a #数据库密码
