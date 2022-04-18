@@ -5,11 +5,9 @@
     <insert id="addUser">
         INSERT INTO t_user ( user_name, pwd, imooc_id, order_id, create_time )
         VALUES
-            (
-                'tom',
-                '123',
-                '111',
-                '222',
-                '2022-04-21 21:16:41')
+            (#{userName}, #{password}, #{imoocId}, #{orderId}, #{createTime})
+            ON DUPLICATE KEY UPDATE
+                                 pwd=VALUES (pwd)
+                                     ,user_name=VALUES (user_name)
     </insert>
 </mapper>

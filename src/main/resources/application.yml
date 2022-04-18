@@ -8,3 +8,8 @@ spring:
     url: jdbc:mysql://localhost:3306/mytest?characterEncoding=utf8&useSSL=true
     username: root #数据库用户名
     password: 123456a #数据库密码
+mybatis:
+  mapper-locations: classpath:mybatis/*.xml  # 注意:一定要对应mapper映射xml文件的所在路径,此处是扫描全部的xml文件
+  type-aliases-package: com.example.as_api.entity # 注意:对应实体类的路径
+  configuration:
+    map-underscore-to-camel-case: true # 数据库字段下划线自动转驼峰
