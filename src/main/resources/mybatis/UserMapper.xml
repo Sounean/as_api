@@ -10,4 +10,14 @@
                                  pwd=VALUES (pwd)
                                      ,user_name=VALUES (user_name)
     </insert>
+
+    <select id="findUser" resultType="com.example.as_api.entity.UserEntity">
+        SELECT
+            *
+        FROM
+            t_user
+        WHERE
+            user_name = #{userName}
+
+    </select>
 </mapper>
