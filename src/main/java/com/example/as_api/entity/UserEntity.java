@@ -1,5 +1,8 @@
 package com.example.as_api.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)  //如果某个字段为空，就不用去返回它了
 public class UserEntity {
 
     /** Imooc用户ID */

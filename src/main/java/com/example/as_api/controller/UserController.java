@@ -4,10 +4,12 @@ import com.example.as_api.entity.ResponseEntity;
 import com.example.as_api.entity.UserEntity;
 import com.example.as_api.service.UserService;
 import com.example.as_api.util.ResponseCode;
+import com.example.as_api.util.UserRedisUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +30,9 @@ public class UserController {
     private UserService mUserService;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
 
     @ApiOperation(value = "登录")
@@ -52,9 +57,8 @@ public class UserController {
         if ("1".equals(userEntity.forbid)) {    // 用户被禁用了
             return ResponseEntity.of(ResponseCode.RC_USER_FORBID);
         }
-        return ResponseEntity.success(userEntity).setMessage("login success.");
-//        UserRedisUtil.addUser(redisTemplate, request.getSession(), userEntity);
-//        return ResponseEntity.success(UserRedisUtil.getKey(request.getSession())).setMessage("login success.");
+        UserRedisUtil.addUser(redisTemplate, request.getSession(), userEntity);// 获取request里的session
+        return ResponseEntity.success(UserRedisUtil.getKey(request.getSession())).setMessage("login success.");
     }
 
     @ApiOperation(value = "注册") //对类增加描述
