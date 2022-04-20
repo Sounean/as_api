@@ -1,10 +1,14 @@
 package com.example.as_api.controller;
 
+import com.example.as_api.config.NeedLogin;
 import com.example.as_api.entity.ResponseEntity;
 import com.example.as_api.entity.UserEntity;
 import com.example.as_api.service.UserService;
+import com.example.as_api.util.DataUtil;
 import com.example.as_api.util.ResponseCode;
 import com.example.as_api.util.UserRedisUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /*
@@ -70,4 +75,24 @@ public class UserController {
         mUserService.addUser(userName, bCryptPasswordEncoder.encode(password), imoocId, orderId);
         return ResponseEntity.successMessage("registration success.");
     }
+
+    @NeedLogin
+    @ApiOperation(value = "登出")
+    @RequestMapping(value = "/logout")
+    public ResponseEntity logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        UserRedisUtil.removeUser(redisTemplate, session);
+        return ResponseEntity.successMessage("logout success.");
+    }
+
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @ApiOperation(value = "获取用户列表")
+    public ResponseEntity getUserList(@RequestParam(value = "pageIndex", defaultValue = "1") @ApiParam("起始页码从1开始") int pageIndex
+            , @RequestParam(value = "pageSize",required = true,defaultValue = "10") @ApiParam("每页显示的数量") int pageSize
+    ) {
+        PageHelper.startPage(pageIndex, pageSize);  // 这个方法一定要放在查询数据库之前,传入（页面，页面数量）
+        List<UserEntity> list = mUserService.getUserList(); // 用list接收数据库里返回的数据
+        return ResponseEntity.success(DataUtil.getPageData(list));
+    }
+
 }

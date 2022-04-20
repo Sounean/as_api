@@ -31,3 +31,10 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true # 数据库字段下划线自动转驼峰
 
+#pagehelper分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true #如果开启分页优化，在分页的时候如果没有数据，会显示有数据页面的数据
+  supportMethodsArguments: true
+  params: count=countSql
+

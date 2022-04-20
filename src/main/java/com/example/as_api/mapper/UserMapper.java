@@ -14,4 +14,6 @@ public interface UserMapper {
 
     List<UserEntity> findUser(String userName);
 
+    List<UserEntity> getUserList(); // 获取用户列表的接口
+
 }

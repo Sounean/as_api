@@ -16,6 +16,11 @@ public class UserService {
         mUserMapper.addUser(userName, password, imoocId, orderId, DateUtil.currentDate());
     }
 
+    public List<UserEntity> getUserList() {
+        return mUserMapper.getUserList();
+    }   // 获取用户列表
+
+
     public List<UserEntity> findUser(String userName) {
         return mUserMapper.findUser(userName);
     }
