@@ -26,4 +26,8 @@ public class UserService {
     }
 
 
+    public void updateUser(String uid, String forbid) {
+        mUserMapper.updateUser(uid, forbid);
+    }
+
 }

@@ -1,8 +1,10 @@
 package com.example.as_api.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)  //如果某个字段为空，就不用去返回它了
+@JsonIgnoreProperties(value = {"pwd"})  // 该字段名在输出前端时就会被隐藏
 public class UserEntity {
 
     /** Imooc用户ID */

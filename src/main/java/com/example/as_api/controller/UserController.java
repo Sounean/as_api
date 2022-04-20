@@ -15,10 +15,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -93,6 +90,14 @@ public class UserController {
         PageHelper.startPage(pageIndex, pageSize);  // 这个方法一定要放在查询数据库之前,传入（页面，页面数量）
         List<UserEntity> list = mUserService.getUserList(); // 用list接收数据库里返回的数据
         return ResponseEntity.success(DataUtil.getPageData(list));
+    }
+
+    @RequestMapping(value = "/{uid}",method = RequestMethod.PUT)
+    @ApiOperation("用户管理")
+    public ResponseEntity updateUser(@ApiParam(name = "用户ID") @PathVariable String uid
+            , @RequestParam(value = "forbid") @ApiParam(name = "是否禁止") String forbid) {
+        mUserService.updateUser(uid,forbid);
+        return ResponseEntity.successMessage("操作成功");
     }
 
 }

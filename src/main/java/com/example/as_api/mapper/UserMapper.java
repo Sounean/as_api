@@ -16,4 +16,6 @@ public interface UserMapper {
 
     List<UserEntity> getUserList(); // 获取用户列表的接口
 
+    void updateUser(String uid, String forbid); //更新用户的禁止状态
+
 }
