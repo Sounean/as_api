@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.as_api.mapper.CategoryMapper">
+    <select id="getCategoryList" resultType="com.example.as_api.entity.CategoryEntity">
+        SELECT
+            *
+        FROM
+            t_goods_category
+    </select>
+
+</mapper>
