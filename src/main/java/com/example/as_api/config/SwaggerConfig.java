@@ -38,7 +38,7 @@ public class SwaggerConfig {
                 .tags(new Tag("Account", "账号模块"))
                 .tags(new Tag("City", "城市模块"))
                 .tags(new Tag("HiConfig", "配置中心模块"))
-                .tags(new Tag("Category", "商品类别"));
+                .tags(new Tag("Category", "类别"));
     }
 
     private ApiInfo apiInfo() {
@@ -47,7 +47,7 @@ public class SwaggerConfig {
                 .title("API文档")
                 .description("Sounean's Proj -API文档")
                 .version(VERSION)
-                .contact(new Contact(AUTHOR, "https://class.imooc.com/sale/mobilearchitect", "xx@gmail.com"))
+                .contact(new Contact(AUTHOR, "https://sounean.github.io/2022/02/07/di-yi-pian/", "https://sounean.github.io/2022/02/07/di-yi-pian/"))
                 .build();
     }
 }

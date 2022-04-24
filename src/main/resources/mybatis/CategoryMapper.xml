@@ -8,5 +8,18 @@
         FROM
             t_goods_category
     </select>
+    <insert id="addCategory">
+        INSERT INTO t_goods_category ( category_name, create_time )
+        VALUES
+            ( #{categoryName}, #{createTime} )
+
+    </insert>
+    <delete id="removeCategory">
+        DELETE
+        FROM
+            t_goods_category
+        WHERE
+            category_id = #{id}
+    </delete>
 
 </mapper>
