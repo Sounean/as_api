@@ -7,11 +7,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(value = {"pwd"})  // 该字段名在输出前端时就会被隐藏
 public class UserEntity {
 
-    /** Imooc用户ID */
-    public String imoocId ;
-    /** 订单ID */
-    public String orderId ;
-    /** 用户名 */
+    /** CSH用户ID */
+    public String cshId ;
+    /** 扩展的ID */
+    public String otherId ;
+    /** 用户名 (因为一户一号，更具有隐私性和安全性，所以昵称可以用默认的代替)*/
     public String userName ;
     /** 密码 */
     public String pwd ;

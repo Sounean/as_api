@@ -16,9 +16,9 @@
             t_user
     </select>
     <insert id="addUser">
-        INSERT INTO t_user ( user_name, pwd, imooc_id, order_id, create_time )
+        INSERT INTO t_user ( user_name, pwd, csh_id, other_id, create_time )
         VALUES
-            (#{userName}, #{password}, #{imoocId}, #{orderId}, #{createTime})
+            (#{userName}, #{password}, #{cshId}, #{otherId}, #{createTime})
             ON DUPLICATE KEY UPDATE
                                  pwd=VALUES (pwd)
                                      ,user_name=VALUES (user_name)
@@ -30,7 +30,7 @@
         FROM
             t_user
         WHERE
-            user_name = #{userName}
+            csh_id = #{userName}
 
     </select>
 </mapper>

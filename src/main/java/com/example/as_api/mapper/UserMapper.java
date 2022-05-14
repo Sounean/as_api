@@ -10,9 +10,9 @@ import java.util.List;
 * */
 @Repository //用来表示数据持久的
 public interface UserMapper {
-    void addUser(String userName, String password, String imoocId, String orderId, String createTime);
+    void addUser(String userName, String password, String cshId, String otherId, String createTime);
 
-    List<UserEntity> findUser(String userName);
+    List<UserEntity> findUser(String cshId);
 
     List<UserEntity> getUserList(); // 获取用户列表的接口
 

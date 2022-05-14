@@ -12,8 +12,8 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserMapper mUserMapper;
-    public void addUser(String userName, String password, String imoocId, String orderId) {
-        mUserMapper.addUser(userName, password, imoocId, orderId, DateUtil.currentDate());
+    public void addUser(String userName, String password, String cshId, String orderId) {
+        mUserMapper.addUser(userName, password, cshId, orderId, DateUtil.currentDate());
     }
 
     public List<UserEntity> getUserList() {
@@ -21,8 +21,8 @@ public class UserService {
     }   // 获取用户列表
 
 
-    public List<UserEntity> findUser(String userName) {
-        return mUserMapper.findUser(userName);
+    public List<UserEntity> findUser(String cshId) {
+        return mUserMapper.findUser(cshId);
     }
 
 

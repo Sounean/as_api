@@ -39,7 +39,7 @@ public class UserController {
 
     @ApiOperation(value = "登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity login(@RequestParam(value = "userName") @ApiParam("账号或手机号") String userName
+    public ResponseEntity login(@RequestParam(value = "userName") @ApiParam("房间号") String userName
             , @RequestParam(value = "password") @ApiParam("密码") String password, HttpServletRequest request) {
         List<UserEntity> list = mUserService.findUser(userName);
         if (list == null || list.isEmpty()) {
@@ -65,11 +65,11 @@ public class UserController {
 
     @ApiOperation(value = "注册") //对类增加描述
     @RequestMapping(value = "/registration",method = RequestMethod.POST)    // 路径和方法
-    public ResponseEntity registration(@RequestParam(value = "userName") @ApiParam("账号或手机号") String userName
+    public ResponseEntity registration(@RequestParam(value = "userName") @ApiParam("昵称") String userName
             , @RequestParam(value = "password") @ApiParam("密码") String password
-            , @RequestParam(value = "imoocId") @ApiParam("慕课网用户ID") String imoocId
-            , @RequestParam(value = "orderId") @ApiParam("订单号") String orderId){
-        mUserService.addUser(userName, bCryptPasswordEncoder.encode(password), imoocId, orderId);
+            , @RequestParam(value = "cshId") @ApiParam("账号（即房间号）") String cshId
+            , @RequestParam(value = "otherId") @ApiParam("多一位拓展用") String otherId){
+        mUserService.addUser(userName, bCryptPasswordEncoder.encode(password), cshId, otherId);
         return ResponseEntity.successMessage("registration success.");
     }
 
