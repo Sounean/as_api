@@ -5,7 +5,9 @@ server:
 spring:
   # 配置数据源
   datasource:
+    #部署服务器上时
     url: jdbc:mysql://118.195.194.196:3306/mytest?characterEncoding=utf8&useSSL=true
+    #调试本地时：url: jdbc:mysql://localhost:3306/mytest?characterEncoding=utf8&useSSL=true
     username: root #数据库用户名
     password: "123456" #数据库密码
   # Redis数据源

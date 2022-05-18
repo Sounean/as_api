@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.as_api.mapper.NewsMapper">
+    <update id="updateNews">
+        UPDATE t_news
+        SET
+            title=#{title}, content=#{content}
+        where
+            title=#{title}
+    </update>
+    <select id="getNewsList" resultType="com.example.as_api.entity.NewsEntity">
+        SELECT
+            *
+        FROM
+            t_news
+    </select>
+    <insert id="addNews">
+        INSERT INTO t_news ( title, content, group_id, create_time )
+        VALUES
+            (#{title}, #{content}, #{groupid}, #{createTime})
+            ON DUPLICATE KEY UPDATE
+                                 title=VALUES (title)
+                                     ,content=VALUES (content)
+    </insert>
+
+    <select id="findNews" resultType="com.example.as_api.entity.NewsEntity">
+        SELECT
+            *
+        FROM
+            t_news
+        WHERE
+            title = #{title}
+    </select>
+</mapper>

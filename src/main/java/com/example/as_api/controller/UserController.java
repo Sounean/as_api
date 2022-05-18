@@ -39,9 +39,9 @@ public class UserController {
 
     @ApiOperation(value = "登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity login(@RequestParam(value = "userName") @ApiParam("房间号") String userName
+    public ResponseEntity login(@RequestParam(value = "cshid") @ApiParam("房间号") String cshid
             , @RequestParam(value = "password") @ApiParam("密码") String password, HttpServletRequest request) {
-        List<UserEntity> list = mUserService.findUser(userName);
+        List<UserEntity> list = mUserService.findUser(cshid);
         if (list == null || list.isEmpty()) {
             return ResponseEntity.of(ResponseCode.RC_ACCOUNT_INVALID);
         }

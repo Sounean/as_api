@@ -30,7 +30,7 @@
         FROM
             t_user
         WHERE
-            csh_id = #{userName}
+            csh_id = #{cshid}
 
     </select>
 </mapper>
